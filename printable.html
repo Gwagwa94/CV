@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Grégoire Baumann</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Light grey background */
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 21cm; /* A4 width */
+            margin: 2cm auto; /* Centered with top/bottom margin */
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px; /* Rounded corners for the main container */
+            padding: 2.5cm; /* Padding inside the A4 area */
+            box-sizing: border-box; /* Include padding in width */
+        }
+        h1, h2, h3 {
+            color: #2c3e50; /* Darker blue for headings */
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a202c; /* Even darker for name */
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #e2e8f0; /* Light grey border */
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .section-content {
+            margin-bottom: 1.5rem;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 1rem;
+        }
+        .experience-item:last-child, .education-item:last-child {
+            margin-bottom: 0;
+        }
+        .skill-category {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .contact-info a {
+            color: #3182ce; /* Blue for links */
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                background-color: #ffffff; /* White background for print */
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                width: 21cm;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 2cm; /* Adjust padding for print if needed */
+            }
+            /* Ensure no page breaks inside sections */
+            .section-content, .experience-item, .education-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container rounded-xl">
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1>Grégoire Baumann</h1>
+            <p class="text-lg text-gray-700">Étudiant Ingénieur en Informatique</p>
+            <p class="text-md text-gray-600">Polytech Nancy, 5ème année, France | IA2R (Informatique, Automatique, Robotique et Réseaux)</p>
+            <p class="text-md text-gray-600">Programme SIR (Systèmes d'Information et Réseaux)</p>
+        </header>
+
+        <!-- Contact Information -->
+        <section class="mb-6 contact-info text-center text-sm text-gray-600">
+            <p>Nancy (54) | Saint-Maur-des-Fossés (94) FRANCE</p>
+            <p>Phone/SMS/WhatsApp: <a href="tel:+33614476627">(+33) 06 14 47 66 27</a></p>
+            <p>Email: <a href="mailto:gregoirebaumann94@gmail.com">gregoirebaumann94@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/gregoire-baumann/" target="_blank" rel="noopener noreferrer">linkedin.com/in/gregoire-baumann/</a></p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section-content">
+            <h2>Compétences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                <div>
+                    <h3 class="skill-category">Langages de Programmation</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>C, C++</li>
+                        <li>JS (React, React Native)</li>
+                        <li>Python (Flask, Deep Learning: PyTorch)</li>
+                        <li>HTML, CSS</li>
+                        <li>Java</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="skill-category">Systèmes Embarqués</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>CAN bus</li>
+                        <li>Arduino, STM32, Raspberry Pi</li>
+                    </ul>
+                    <h3 class="skill-category mt-4">Outils & Technologies</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>Git (Github, Gitlab) CLI/GUI</li>
+                        <li>Docker</li>
+                        <li>Google Cloud (Database, OAuth 2.0)</li>
+                        <li>Jetbrains IDEs</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="skill-category">Concepts & Méthodologies</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>Architecture réseau (Cisco)</li>
+                        <li>Traitement du signal</li>
+                        <li>Programmation linéaire et non linéaire</li>
+                        <li>SOLID, KISS, DRY principles</li>
+                    </ul>
+                    <h3 class="skill-category mt-4">Langues</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>Français - Langue maternelle</li>
+                        <li>Anglais - 900 TOEIC</li>
+                        <li>Italien - Bases</li>
+                        <li>Allemand - Bases</li>
+                        <li>Espagnol - Bases</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section-content">
+            <h2>Expérience</h2>
+
+            <div class="experience-item">
+                <h3 class="font-semibold">NRG Consulting, Madrid</h3>
+                <p class="text-gray-600 italic">Stagiaire Développeur Ingénieur — MAR - SEP 2025</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Développement de logiciels pour le stockage et le traitement d'indicateurs de trading.</li>
+                    <li>Conception d'un programme exécutable permettant l'acquisition de données (internet, base de données), la modélisation mathématique et l'optimisation.</li>
+                    <li>Application des principes SOLID, KISS, DRY. Langages utilisés : Python et SQL.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="font-semibold">RATP, Fontenay-sous-Bois (94)</h3>
+                <p class="text-gray-600 italic">Stage Assistant Ingénieur — AVR - AOÛT 2024</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Développement d'une application web interne facilitant l'utilisation d'algorithmes d'optimisation Python.</li>
+                    <li>Mise en place d'une interface graphique interactive pour agir directement sur les entrées et les résultats de l'algorithme.</li>
+                    <li>Technologies utilisées : React.js et Flask.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="font-semibold">Polytech Services Nancy</h3>
+                <p class="text-gray-600 italic">Responsable des Services et Systèmes Informatiques — SEP 2022 - JUIN 2023</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Gestion et maintenance des infrastructures et services informatiques de la junior entreprise.</li>
+                    <li>Participation active à la mise en place et à l'optimisation des outils digitaux.</li>
+                    <li>Participation aux discussions administratives en tant que membre du bureau.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="font-semibold">Robotech School Project — Division IT</h3>
+                <p class="text-gray-600 italic">Projet Scolaire — 2023</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Programmation de contrôleurs STM32.</li>
+                    <li>Application de la Programmation Orientée Objet (C, C++).</li>
+                    <li>Résolution de problèmes en équipe et compréhension approfondie du fonctionnement d'un contrôleur dans le cadre des systèmes embarqués.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="font-semibold">Explique-moi Pythagore, Saint-Maur-des-Fossés (94)</h3>
+                <p class="text-gray-600 italic">Stage d'immersion en entreprise — Été 2021</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Développement d'applications web et mobiles pour l'organisation de cours de soutien scolaire à domicile.</li>
+                    <li>Technologies utilisées : React.js et React Native.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section-content">
+            <h2>Formation</h2>
+            <div class="education-item">
+                <h3 class="font-semibold">Polytech Nancy, Vandœuvre-lès-Nancy</h3>
+                <p class="text-gray-600 italic">Ingénieur en Informatique — 2022-2025</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Spécialité IA2R (Informatique, Automatique, Robotique & Réseaux)</li>
+                    <li>Programme SIR (Systèmes d'Information et Réseaux)</li>
+                </ul>
+            </div>
+            <div class="education-item">
+                <h3 class="font-semibold">Polytech Sorbonne, Paris</h3>
+                <p class="text-gray-600 italic">Programme Préparatoire Intégré (PEIP) — 2020-2022</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Parcours des Écoles d'Ingénieurs Polytech</li>
+                </ul>
+            </div>
+            <div class="education-item">
+                <h3 class="font-semibold">Lycée François Mansart, Saint-Maur-des-Fossés</h3>
+                <p class="text-gray-600 italic">Baccalauréat Scientifique, Spécialité Sciences de l'Ingénieur — 2018-2020</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Mention Bien</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section class="section-content">
+            <h2>Centres d'Intérêt</h2>
+            <ul class="list-disc list-inside ml-4 text-sm text-gray-700">
+                <li>Je joue de la guitare depuis plus de 10 ans.</li>
+                <li>J'ai pratiqué différents sports (escrime, karaté, voile, etc.).</li>
+                <li>J'aime jouer aux échecs, aux jeux vidéo et discuter avec mes amis.</li>
+                <li>Cette année, j'ai commencé la salle de sport.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
