@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> <!-- Default language, will be updated by JS -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Grégoire Baumann</title>
+    <title id="pageTitle">CV Grégoire Baumann</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icon-css@1.0/css/flag-icon.min.css">
-    <!-- Chosen Palette: Warm Neutral (Slate, Stone, Sky) -->
-    <!-- Application Structure Plan: The SPA uses a two-column, responsive layout. A sticky left sidebar contains primary identity information and navigation, ensuring constant access. The right main content area dynamically displays sections (Summary, Experience, Education, Skills) based on user selection. This structure is chosen for its clear separation of concerns, modern feel, and ease of navigation, allowing recruiters to quickly jump to relevant information without scrolling through a long, linear document. The experience and education sections are presented as a vertical timeline to visually represent career progression. -->
-    <!-- Visualization & Content Choices: 1. Experience/Education -> Goal: Show chronology -> Presentation: Vertical Timeline (HTML/CSS) -> Interaction: Sectional navigation -> Justification: More engaging and scannable than a simple list. 2. Technical Skills -> Goal: Inform/Organize -> Presentation: Grouped tag/pill lists (HTML/CSS) -> Interaction: None -> Justification: Visually groups related skills for quick assessment. 3. Language Proficiency (TOEIC) -> Goal: Quantify skill -> Viz: Doughnut Chart (Chart.js/Canvas) -> Interaction: Tooltip on hover -> Justification: Provides an immediate, impressive visual metric of English proficiency. 4. Soft Skills/Interests -> Goal: Inform/Add personality -> Presentation: Icon-prefixed lists (HTML/Unicode) -> Interaction: None -> Justification: Enhances readability and visual appeal. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -56,249 +52,409 @@
             width: 250px;
             max-width: 100%;
         }
+        /* Style for the top language switcher */
+        .top-lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .top-lang-switcher button {
+            background-color: #3182ce; /* Blue */
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background-color 0.2s;
+        }
+        .top-lang-switcher button:hover {
+            background-color: #2b6cb0; /* Darker blue on hover */
+        }
+        .top-lang-switcher button.active {
+            background-color: #2c5282; /* Even darker blue for active */
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="text-slate-700">
 
-    <div class="container mx-auto p-4 lg:p-8">
-        <div class="lg:flex lg:space-x-12">
+<div class="top-lang-switcher">
+    <button id="top-lang-fr" onclick="setLanguage('fr')">FR</button>
+    <button id="top-lang-en" onclick="setLanguage('en')">EN</button>
+    <button id="top-lang-es" onclick="setLanguage('es')">ES</button>
+</div>
 
-            <!-- Left Sidebar -->
-            <aside class="lg:w-1/3 lg:sticky lg:top-8 self-start mb-8 lg:mb-0">
-                <div class="p-8 bg-white rounded-2xl shadow-lg">
-                    <div class="text-center">
-                        <div class="w-32 h-32 rounded-full mx-auto bg-slate-200 mb-4 flex items-center justify-center">
-                             <span class="text-5xl text-slate-500">GB</span>
-                        </div>
-                        <h1 class="text-3xl font-bold text-slate-800">Grégoire Baumann</h1>
-                        <h2 class="text-xl font-medium text-sky-600 mt-1">Développeur Full Stack</h2>
+<div class="container mx-auto p-4 lg:p-8">
+    <div class="lg:flex lg:space-x-12">
+
+        <!-- Left Sidebar -->
+        <aside class="lg:w-1/3 lg:sticky lg:top-8 self-start mb-8 lg:mb-0">
+            <div class="p-8 bg-white rounded-2xl shadow-lg">
+                <div class="text-center">
+                    <div class="w-32 h-32 rounded-full mx-auto bg-slate-200 mb-4 flex items-center justify-center">
+                        <span class="text-5xl text-slate-500">GB</span>
                     </div>
+                    <h1 class="text-3xl font-bold text-slate-800" id="sidebarName"></h1>
+                    <h2 class="text-xl font-medium text-sky-600 mt-1" id="sidebarTitle"></h2>
+                </div>
 
-                    <div class="mt-8 border-t border-slate-200 pt-6">
-                        <ul class="space-y-3">
-                            <li class="flex items-center space-x-3">
-                                <span class="text-sky-600 text-lg">📧</span>
-                                <a href="mailto:gregoirebaumann94@gmail.com" class="hover:text-sky-600">gregoirebaumann94@gmail.com</a>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <span class="text-sky-600 text-lg">📞</span>
-                                <span>+33 6 14 47 66 27</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <span class="text-sky-600 text-lg">📍</span>
-                                <span>Saint-Maur-des-Fossés, 94100</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <span class="text-sky-600 text-lg">🔗</span>
-                                <a href="https://www.linkedin.com/in/gregoire-baumann/" target="_blank" class="hover:text-sky-600">linkedin.com/in/gregoire-baumann</a>
-                            </li>
-                        </ul>
+                <div class="mt-8 border-t border-slate-200 pt-6">
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3">
+                            <span class="text-sky-600 text-lg">📧</span>
+                            <a href="mailto:gregoirebaumann94@gmail.com" class="hover:text-sky-600" id="sidebarEmail"></a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-sky-600 text-lg">📞</span>
+                            <span id="sidebarPhoneFr"></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-sky-600 text-lg">📍</span>
+                            <span id="sidebarLocation"></span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-sky-600 text-lg">🔗</span>
+                            <a href="https://www.linkedin.com/in/gregoire-baumann/" target="_blank" class="hover:text-sky-600" id="sidebarLinkedin"></a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-sky-600 text-lg">📄</span>
+                            <a href="cv_unified.html" target="_blank" class="hover:text-sky-600" id="sidebarOnlineCV"></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <nav class="mt-8 border-t border-slate-200 pt-6">
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="nav-link active block font-semibold p-3 rounded-lg hover:bg-sky-100" data-section-id="about" id="navAbout"></a></li>
+                        <li><a href="#experience" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100" data-section-id="experience" id="navExperience"></a></li>
+                        <li><a href="#education" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100" data-section-id="education" id="navEducation"></a></li>
+                        <li><a href="#skills" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100" data-section-id="skills" id="navSkills"></a></li>
+                        <li><a href="#hobbies" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100" data-section-id="hobbies" id="navHobbies"></a></li>
+                        <li class="font-semibold p-3 rounded-lg" id="navOnePageTitle"></li>
+                        <li><a href="cv_unified.html?lang=fr" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-fr"></span>&nbsp <span id="langButtonFr"></span></a></li>
+                        <li><a href="cv_unified.html?lang=en" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-gb"></span>&nbsp <span id="langButtonEn"></span></a></li>
+                        <li><a href="cv_unified.html?lang=es" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-es"></span>&nbsp <span id="langButtonEs"></span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Right Content -->
+        <main class="lg:w-2/3">
+            <div class="p-8 bg-white rounded-2xl shadow-lg min-h-[80vh]">
+
+                <!-- About Section -->
+                <section id="about" class="content-section active">
+                    <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6" id="aboutTitle"></h3>
+                    <p class="text-lg leading-relaxed" id="aboutText"></p>
+                </section>
+
+                <!-- Experience Section -->
+                <section id="experience" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-10" id="experienceTitle"></h3>
+                    <div class="relative border-l-2 border-slate-200 ml-4" id="experienceContent">
+                        <!-- Experience items will be dynamically loaded here -->
                     </div>
+                </section>
 
-                    <nav class="mt-8 border-t border-slate-200 pt-6">
-                        <ul class="space-y-2">
-                            <li><a href="#about" class="nav-link active block font-semibold p-3 rounded-lg hover:bg-sky-100">À propos</a></li>
-                            <li><a href="#experience" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100">Expérience</a></li>
-                            <li><a href="#education" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100">Formation</a></li>
-                            <li><a href="#skills" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100">Compétences</a></li>
-                            <li><a href="#interests" class="nav-link block font-semibold p-3 rounded-lg hover:bg-sky-100">Centres d'intérêt</a></li>
-                            <li class="font-semibold p-3 rounded-lg">One-page
-                                <a href="cv_unified.html?lang=fr" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-fr"></span>&nbsp Français</a>
-                                <a href="cv_unified.html?lang=en" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-gb"></span>&nbsp English</a>
-                                <a href="cv_unified.html?lang=es" class="block font-semibold p-3 rounded-lg hover:bg-sky-100"><span class="flag-icon flag-icon-es"></span>&nbsp Español</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
+                <!-- Education Section -->
+                <section id="education" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-10" id="educationTitle"></h3>
+                    <div class="relative border-l-2 border-slate-200 ml-4" id="educationContent">
+                        <!-- Education items will be dynamically loaded here -->
+                    </div>
+                </section>
 
-            <!-- Right Content -->
-            <main class="lg:w-2/3">
-                <div class="p-8 bg-white rounded-2xl shadow-lg min-h-[80vh]">
+                <!-- Skills Section -->
+                <section id="skills" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6" id="skillsMainTitle"></h3>
+                    <p class="mb-8 text-slate-600" id="skillsIntroText"></p>
 
-                    <!-- About Section -->
-                    <section id="about" class="content-section active">
-                        <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6">À propos de moi</h3>
-                        <p class="text-lg leading-relaxed">
-                            Jeune diplômé ingénieur en informatique, passionné par le développement Full Stack et la résolution de problèmes. Je recherche activement mon premier emploi pour mettre à profit mes compétences techniques, ma créativité et ma soif d'apprendre au sein d'une équipe dynamique. Mon parcours m'a permis d'acquérir une solide base technique ainsi qu'une grande capacité d'adaptation et d'autonomie.
-                        </p>
-                    </section>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-4" id="progLangTitle"></h4>
+                            <div class="flex flex-wrap gap-2" id="progLangSkills"></div>
 
-                    <!-- Experience Section -->
-                    <section id="experience" class="content-section">
-                        <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-10">Expérience Professionnelle</h3>
-                        <div class="relative border-l-2 border-slate-200 ml-4">
-                            <div class="space-y-12">
-                                <div class="relative pl-8 timeline-item">
-                                    <p class="absolute -left-[58px] top-1 text-sm bg-sky-600 text-white font-semibold py-1 px-3 rounded-md">Présent</p>
-                                    <h4 class="text-xl font-bold text-slate-800">Stagiaire en Développement</h4>
-                                    <p class="font-semibold text-slate-600">NRG Consulting, Madrid, Espagne</p>
-                                    <p class="text-sm text-slate-500">Avril 2025 – Septembre 2025</p>
-                                    <ul class="list-disc list-inside mt-4 space-y-2 text-slate-600">
-                                        <li>Développement d'un serveur pour sauvegarder les données historiques d'indicateurs d'une API tierce dans une base de données MySQL.</li>
-                                        <li>Conception et implémentation d'un optimiseur pour identifier les meilleures positions de marché.</li>
-                                        <li>Mise en place d'un système de stockage cloud pour le partage automatisé des résultats avec les clients.</li>
-                                    </ul>
+                            <h4 class="text-xl font-bold text-slate-800 mt-8 mb-4" id="embeddedSystemsTitle"></h4>
+                            <div class="flex flex-wrap gap-2" id="embeddedSystemsSkills"></div>
+
+                            <h4 class="text-xl font-bold text-slate-800 mt-8 mb-4" id="toolsTechTitle"></h4>
+                            <div class="flex flex-wrap gap-2" id="toolsTechSkills"></div>
+
+                            <h4 class="text-xl font-bold text-slate-800 mt-8 mb-4" id="conceptsMethodsTitle"></h4>
+                            <div class="flex flex-wrap gap-2" id="conceptsMethodsSkills"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-4" id="languagesMainTitle"></h4>
+                            <div class="space-y-6">
+                                <div>
+                                    <p class="font-semibold" id="langFrTitle"></p>
+                                    <p class="text-slate-600" id="langFrLevel"></p>
                                 </div>
-                                <div class="relative pl-8 timeline-item">
-                                    <h4 class="text-xl font-bold text-slate-800">Stagiaire en Informatique</h4>
-                                    <p class="font-semibold text-slate-600">RATP, France</p>
-                                    <p class="text-sm text-slate-500">Avril 2024 – Août 2024</p>
-                                    <ul class="list-disc list-inside mt-4 space-y-2 text-slate-600">
-                                        <li>Développement d'une application visant à faciliter l'utilisation d'un optimiseur pour la planification d'offres de transport ferroviaire.</li>
-                                    </ul>
+                                <div>
+                                    <p class="font-semibold" id="langEnTitle"></p>
+                                    <p class="text-slate-600" id="langEnLevel"></p>
+                                    <div class="chart-container mt-4">
+                                        <canvas id="toeicChart"></canvas>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" id="langEsTitle"></p>
+                                    <p class="text-slate-600" id="langEsLevel"></p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" id="langItTitle"></p>
+                                    <p class="text-slate-600" id="langItLevel"></p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" id="langDeTitle"></p>
+                                    <p class="text-slate-600" id="langDeLevel"></p>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    
-                    <!-- Education Section -->
-                    <section id="education" class="content-section">
-                        <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-10">Formation & Diplômes</h3>
-                        <div class="relative border-l-2 border-slate-200 ml-4">
-                            <div class="space-y-12">
-                                <div class="relative pl-8 timeline-item">
-                                    <h4 class="text-xl font-bold text-slate-800">Diplôme d'Ingénieur en Sciences et Technologies de l'Information (STI)</h4>
-                                    <p class="font-semibold text-slate-600">Spécialité Systèmes d'Information et Réseaux (SIR)</p>
-                                    <p class="italic text-slate-500">Polytech Nancy (ex ESSTIN), Nancy, France</p>
-                                    <p class="text-sm text-slate-500">2022 – 2025</p>
-                                </div>
-                                 <div class="relative pl-8 timeline-item">
-                                    <h4 class="text-xl font-bold text-slate-800">Parcours des Écoles d'Ingénieurs Polytech (PEIP)</h4>
-                                    <p class="italic text-slate-500">Polytech Nancy, Nancy, France</p>
-                                    <p class="text-sm text-slate-500">2020 – 2022</p>
-                                </div>
-                                <div class="relative pl-8 timeline-item">
-                                    <h4 class="text-xl font-bold text-slate-800">Baccalauréat Scientifique (S)</h4>
-                                    <p class="font-semibold text-slate-600">Spécialité Sciences de l'Ingénieur (SI) - Mention Bien</p>
-                                    <p class="text-sm text-slate-500">2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <!-- Skills Section -->
-                    <section id="skills" class="content-section">
-                        <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6">Compétences</h3>
-                        <p class="mb-8 text-slate-600">Voici un aperçu des technologies que je maîtrise et des compétences que j'ai développées au cours de ma formation et de mes expériences.</p>
-                        
-                        <div class="grid md:grid-cols-2 gap-12">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-800 mb-4">Compétences Techniques</h4>
-                                <div class="space-y-4">
-                                    <div>
-                                        <h5 class="font-semibold mb-2">Développement Web</h5>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-sky-100 text-sky-800 font-medium py-1 px-3 rounded-full">React</span>
-                                            <span class="bg-sky-100 text-sky-800 font-medium py-1 px-3 rounded-full">Angular</span>
-                                            <span class="bg-sky-100 text-sky-800 font-medium py-1 px-3 rounded-full">Next.js</span>
-                                            <span class="bg-sky-100 text-sky-800 font-medium py-1 px-3 rounded-full">JavaScript</span>
-                                            <span class="bg-sky-100 text-sky-800 font-medium py-1 px-3 rounded-full">TypeScript</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-semibold mb-2">Langages de Programmation</h5>
-                                        <div class="flex flex-wrap gap-2">
-                                             <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Java</span>
-                                             <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Python</span>
-                                             <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">C++</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-semibold mb-2">Bases de données & Outils</h5>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">SQL</span>
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">MySQL</span>
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Git</span>
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Google Cloud</span>
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Cloud Storage</span>
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">API</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-semibold mb-2">Réseaux</h5>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-slate-200 text-slate-800 font-medium py-1 px-3 rounded-full">Réseaux informatiques</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <h4 class="text-xl font-bold text-slate-800 mt-8 mb-4">Compétences Comportementales</h4>
-                                <ul class="space-y-2">
-                                    <li class="flex items-center"><span class="text-sky-500 mr-2">✓</span>Résolution de problèmes</li>
-                                    <li class="flex items-center"><span class="text-sky-500 mr-2">✓</span>Communication & Esprit d'équipe</li>
-                                    <li class="flex items-center"><span class="text-sky-500 mr-2">✓</span>Créativité & Curiosité</li>
-                                    <li class="flex items-center"><span class="text-sky-500 mr-2">✓</span>Autonomie & Adaptabilité</li>
-                                </ul>
-
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-800 mb-4">Langues</h4>
-                                <div class="space-y-6">
-                                    <div>
-                                        <p class="font-semibold">Français</p>
-                                        <p class="text-slate-600">Langue maternelle</p>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Anglais</p>
-                                        <p class="text-slate-600">Niveau avancé (C1)</p>
-                                        <div class="chart-container mt-4">
-                                            <canvas id="toeicChart"></canvas>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Espagnol</p>
-                                        <p class="text-slate-600">Intermédiaire</p>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold">Italien</p>
-                                        <p class="text-slate-600">Notions</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-                    
-                    <!-- Interests Section -->
-                    <section id="interests" class="content-section">
-                        <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6">Centres d'intérêt</h3>
-                        <p class="mb-8 text-slate-600">En dehors de la technologie, je suis une personne curieuse avec des passions variées qui nourrissent ma créativité et ma discipline.</p>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                            <div class="bg-slate-100 p-6 rounded-xl">
-                                <p class="text-4xl mb-2">🎸</p>
-                                <p class="font-semibold">Guitare</p>
-                                <p class="text-sm text-slate-600">+10 ans de pratique</p>
-                            </div>
-                            <div class="bg-slate-100 p-6 rounded-xl">
-                                <p class="text-4xl mb-2">🏋️</p>
-                                <p class="font-semibold">Sport</p>
-                                <p class="text-sm text-slate-600">Musculation, Arts martiaux</p>
-                            </div>
-                            <div class="bg-slate-100 p-6 rounded-xl">
-                                <p class="text-4xl mb-2">💡</p>
-                                <p class="font-semibold">Technologie</p>
-                                <p class="text-sm text-slate-600">Veille constante</p>
-                            </div>
-                            <div class="bg-slate-100 p-6 rounded-xl">
-                                <p class="text-4xl mb-2">🎮</p>
-                                <p class="font-semibold">Jeux vidéo</p>
-                                <p class="text-sm text-slate-600">Stratégie & RPG</p>
-                            </div>
-                            <div class="bg-slate-100 p-6 rounded-xl">
-                                <p class="text-4xl mb-2">🤝</p>
-                                <p class="font-semibold">Social</p>
-                                <p class="text-sm text-slate-600">Sorties entre amis</p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </main>
-        </div>
+                <!-- Hobbies Section -->
+                <section id="hobbies" class="content-section">
+                    <h3 class="text-2xl font-bold text-slate-800 border-b-4 border-sky-500 pb-2 mb-6" id="hobbiesMainTitle"></h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600" id="hobbiesContent">
+                        <!-- Hobbies items will be dynamically loaded here -->
+                    </ul>
+                </section>
+            </div>
+        </main>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+<script>
+    // Function to render content based on language
+    function renderContent(lang) {
+        const currentLang = window.translations[lang];
+        if (!currentLang) {
+            console.error("Language not found:", lang);
+            return;
+        }
+
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        document.getElementById('pageTitle').textContent = `CV Grégoire Baumann - ${lang.toUpperCase()}`;
+
+        // --- Left Sidebar ---
+        document.getElementById('sidebarName').textContent = currentLang.header.name;
+        document.getElementById('sidebarTitle').textContent = currentLang.header.title;
+        document.getElementById('sidebarEmail').textContent = currentLang.contact.email.replace('Email: ', '');
+        document.getElementById('sidebarPhoneFr').textContent = currentLang.contact.phoneFr;
+        document.getElementById('sidebarLocation').textContent = currentLang.contact.location;
+        document.getElementById('sidebarLinkedin').textContent = currentLang.contact.linkedin.replace('LinkedIn: ', '');
+        document.getElementById('sidebarOnlineCV').textContent = currentLang.contact.onlineCV.replace('CV en ligne: ', '');
+
+
+        // Navigation links
+        document.getElementById('navAbout').textContent = currentLang.nav.about;
+        document.getElementById('navExperience').textContent = currentLang.nav.experience;
+        document.getElementById('navEducation').textContent = currentLang.nav.education;
+        document.getElementById('navSkills').textContent = currentLang.nav.skills;
+        document.getElementById('navHobbies').textContent = currentLang.nav.hobbies;
+        document.getElementById('navOnePageTitle').textContent = currentLang.nav.onePageTitle;
+        document.getElementById('langButtonFr').textContent = "Français";
+        document.getElementById('langButtonEn').textContent = "English";
+        document.getElementById('langButtonEs').textContent = "Español";
+
+        // --- Main Content ---
+
+        // About Section
+        document.getElementById('aboutTitle').textContent = currentLang.about.title;
+        document.getElementById('aboutText').textContent = currentLang.about.text;
+
+        // Experience Section
+        document.getElementById('experienceTitle').textContent = currentLang.experience.title;
+        const experienceContent = document.getElementById('experienceContent');
+        experienceContent.innerHTML = ''; // Clear previous content
+        currentLang.experience.items.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'relative pl-8 timeline-item';
+            div.innerHTML = `
+                <h4 class="text-xl font-bold text-slate-800">${item.role}</h4>
+                <p class="font-semibold text-slate-600">${item.company}</p>
+                <p class="text-sm text-slate-500">${item.period}</p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-slate-600">
+                    ${item.description.map(desc => `<li>${desc}</li>`).join('')}
+                </ul>
+            `;
+            experienceContent.appendChild(div);
+        });
+
+        // Education Section
+        document.getElementById('educationTitle').textContent = currentLang.education.title;
+        const educationContent = document.getElementById('educationContent');
+        educationContent.innerHTML = ''; // Clear previous content
+        currentLang.education.items.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'relative pl-8 timeline-item';
+            div.innerHTML = `
+                <h4 class="text-xl font-bold text-slate-800">${item.degree}</h4>
+                <p class="font-semibold text-slate-600">${item.school}</p>
+                <p class="text-sm text-slate-500">${item.period}</p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-slate-600">
+                    ${item.details.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+            `;
+            educationContent.appendChild(div);
+        });
+
+        // Skills Section
+        document.getElementById('skillsMainTitle').textContent = currentLang.skills.title;
+        document.getElementById('skillsIntroText').textContent = ""; // No intro text in translations.js for skills
+
+        document.getElementById('progLangTitle').textContent = currentLang.skills.programmingLanguages.title;
+        renderPillSkills('progLangSkills', currentLang.skills.programmingLanguages.items, 'bg-sky-100 text-sky-800');
+
+        document.getElementById('embeddedSystemsTitle').textContent = currentLang.skills.embeddedSystems.title;
+        renderPillSkills('embeddedSystemsSkills', currentLang.skills.embeddedSystems.items, 'bg-slate-200 text-slate-800');
+
+        document.getElementById('toolsTechTitle').textContent = currentLang.skills.toolsTech.title;
+        renderPillSkills('toolsTechSkills', currentLang.skills.toolsTech.items, 'bg-slate-200 text-slate-800');
+
+        document.getElementById('conceptsMethodsTitle').textContent = currentLang.skills.conceptsMethods.title;
+        renderPillSkills('conceptsMethodsSkills', currentLang.skills.conceptsMethods.items, 'bg-slate-200 text-slate-800');
+
+        document.getElementById('languagesMainTitle').textContent = currentLang.skills.languages.title;
+        document.getElementById('langFrTitle').textContent = currentLang.skills.languages.items[0].split(' - ')[0];
+        document.getElementById('langFrLevel').textContent = currentLang.skills.languages.items[0].split(' - ')[1];
+        document.getElementById('langEnTitle').textContent = currentLang.skills.languages.items[1].split(' - ')[0];
+        document.getElementById('langEnLevel').textContent = currentLang.skills.languages.items[1].split(' - ')[1];
+        document.getElementById('langEsTitle').textContent = currentLang.skills.languages.items[2].split(' - ')[0];
+        document.getElementById('langEsLevel').textContent = currentLang.skills.languages.items[2].split(' - ')[1];
+        document.getElementById('langItTitle').textContent = currentLang.skills.languages.items[3].split(' - ')[0];
+        document.getElementById('langItLevel').textContent = currentLang.skills.languages.items[3].split(' - ')[1];
+        document.getElementById('langDeTitle').textContent = currentLang.skills.languages.items[4].split(' - ')[0];
+        document.getElementById('langDeLevel').textContent = currentLang.skills.languages.items[4].split(' - ')[1];
+
+
+        // Hobbies Section
+        document.getElementById('hobbiesMainTitle').textContent = currentLang.hobbies.title;
+        renderList('hobbiesContent', currentLang.hobbies.items);
+
+        // Re-render TOEIC chart if skills section is active
+        if (document.getElementById('skills').classList.contains('active')) {
+            renderToeicChart();
+        }
+
+        // Set active button for the top language switcher
+        document.querySelectorAll('.top-lang-switcher button').forEach(button => {
+            button.classList.remove('active');
+        });
+        document.getElementById(`top-lang-${lang}`).classList.add('active');
+    }
+
+    // Helper function to render skill pills
+    function renderPillSkills(divId, items, className) {
+        const div = document.getElementById(divId);
+        div.innerHTML = '';
+        items.forEach(item => {
+            const span = document.createElement('span');
+            span.className = `${className} font-medium py-1 px-3 rounded-full`;
+            span.textContent = item;
+            div.appendChild(span);
+        });
+    }
+
+    // Helper function to render simple list items (for hobbies and language details)
+    function renderList(ulId, items) {
+        const ul = document.getElementById(ulId);
+        ul.innerHTML = '';
+        items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            ul.appendChild(li);
+        });
+    }
+
+    let toeicChartInstance = null;
+    function renderToeicChart() {
+        const ctx = document.getElementById('toeicChart');
+        if (!ctx) return;
+
+        if (toeicChartInstance) {
+            toeicChartInstance.destroy();
+        }
+
+        toeicChartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Score TOEIC', 'Restant'],
+                datasets: [{
+                    data: [900, 90], // 900 sur 990
+                    backgroundColor: [
+                        '#0284c7', // sky-600
+                        '#e2e8f0'  // slate-200
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: false
+                    }
+                },
+                cutout: '70%',
+            },
+            plugins: [{
+                id: 'doughnutText',
+                afterDraw(chart, args, options) {
+                    const {ctx, chartArea: {width, height}} = chart;
+                    ctx.save();
+                    const text = '900';
+                    const subText = 'sur 990';
+
+                    ctx.font = 'bold 40px Inter';
+                    ctx.fillStyle = '#1e293b'; // slate-800
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(text, width / 2, height / 1.5);
+
+                    ctx.font = '16px Inter';
+                    ctx.fillStyle = '#64748b'; // slate-500
+                    ctx.fillText(subText, width / 2, height / 1.5 + 30);
+                    ctx.restore();
+                }
+            }]
+        });
+    }
+
+    // Function to set language and update URL
+    function setLanguage(lang) {
+        // Update the URL hash to reflect the language, but don't force a page reload
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        window.history.pushState({}, '', url); // Update URL without reloading
+        renderContent(lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Dynamically load the translations.js script
+        const script = document.createElement('script');
+        script.src = 'translations.js'; // Assuming translations.js is in the same directory
+        script.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'fr'; // Default to French
+            renderContent(lang);
+
+            // Initialize SPA navigation after content is rendered
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.content-section');
 
@@ -309,8 +465,8 @@
                     navLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
 
-                    const targetId = this.getAttribute('href').substring(1);
-                    
+                    const targetId = this.getAttribute('data-section-id'); // Use data-section-id
+
                     sections.forEach(section => {
                         if (section.id === targetId) {
                             section.classList.add('active');
@@ -319,75 +475,38 @@
                         }
                     });
 
-                    // Si on est sur l'onglet compétences, on dessine le graphe
                     if (targetId === 'skills') {
                         renderToeicChart();
                     }
                 });
             });
 
-            let toeicChartInstance = null;
-            function renderToeicChart() {
-                const ctx = document.getElementById('toeicChart');
-                if (!ctx) return;
-                
-                // Détruire le graphique précédent s'il existe pour éviter les bugs d'affichage
-                if (toeicChartInstance) {
-                    toeicChartInstance.destroy();
-                }
+            // Set initial active section based on URL hash or default to 'about'
+            const initialHash = window.location.hash.substring(1);
+            const initialSectionId = initialHash || 'about';
+            const initialNavLink = document.querySelector(`.nav-link[data-section-id="${initialSectionId}"]`);
+            const initialSection = document.getElementById(initialSectionId);
 
-                toeicChartInstance = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Score TOEIC', 'Restant'],
-                        datasets: [{
-                            data: [900, 90], // 900 sur 990
-                            backgroundColor: [
-                                '#0284c7', // sky-600
-                                '#e2e8f0'  // slate-200
-                            ],
-                            borderColor: '#ffffff',
-                            borderWidth: 4,
-                            circumference: 180,
-                            rotation: 270,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                enabled: false
-                            }
-                        },
-                        cutout: '70%',
-                    },
-                    plugins: [{
-                        id: 'doughnutText',
-                        afterDraw(chart, args, options) {
-                            const {ctx, chartArea: {width, height}} = chart;
-                            ctx.save();
-                            const text = '900';
-                            const subText = 'sur 990';
-                            
-                            ctx.font = 'bold 40px Inter';
-                            ctx.fillStyle = '#1e293b'; // slate-800
-                            ctx.textAlign = 'center';
-                            ctx.textBaseline = 'middle';
-                            ctx.fillText(text, width / 2, height / 1.5);
-                            
-                            ctx.font = '16px Inter';
-                            ctx.fillStyle = '#64748b'; // slate-500
-                            ctx.fillText(subText, width / 2, height / 1.5 + 30);
-                            ctx.restore();
-                        }
-                    }]
-                });
+            if (initialNavLink) {
+                initialNavLink.classList.add('active');
             }
-        });
-    </script>
+            if (initialSection) {
+                initialSection.classList.add('active');
+                if (initialSectionId === 'skills') {
+                    renderToeicChart();
+                }
+            } else {
+                // Fallback to 'about' if initial section not found
+                document.getElementById('about').classList.add('active');
+                // Ensure the corresponding nav link is also active
+                document.querySelector(`.nav-link[data-section-id="about"]`).classList.add('active');
+            }
+        };
+        script.onerror = () => {
+            console.error("Failed to load translations.js. Ensure it's in the correct path.");
+        };
+        document.head.appendChild(script);
+    });
+</script>
 </body>
 </html>

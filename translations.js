@@ -12,7 +12,20 @@ const translations = {
       phoneFr: "Phone/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Phone/SMS: (+34) 633 681 593",
       email: "Email: gregoirebaumann94@gmail.com",
-      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/"
+      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/",
+      onlineCV: "CV en ligne: gwagwa94.github.io/CV"
+    },
+    nav: {
+      about: "À Propos",
+      experience: "Expérience",
+      education: "Formation",
+      skills: "Compétences",
+      hobbies: "Centres d'Intérêt",
+      onePageTitle: "Version one-page:"
+    },
+    about: {
+      title: "À Propos",
+      text: "Je suis un étudiant ingénieur en informatique passionné par le développement logiciel, les systèmes embarqués et l'intelligence artificielle. Actuellement en 5ème année à Polytech Nancy, je me spécialise en Informatique, Automatique, Robotique et Réseaux (IA2R), avec un focus sur les Systèmes d'Information et Réseaux (SIR). Je recherche des opportunités pour appliquer mes compétences et apprendre de nouvelles technologies."
     },
     skills: {
       title: "Compétences",
@@ -170,7 +183,20 @@ const translations = {
       phoneFr: "Teléfono/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Teléfono/SMS: (+34) 633 681 593",
       email: "Correo electrónico: gregoirebaumann94@gmail.com",
-      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/"
+      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/",
+      onlineCV: "CV en línea: gwagwa94.github.io/CV"
+    },
+    nav: {
+      about: "Acerca de",
+      experience: "Experiencia",
+      education: "Formación",
+      skills: "Habilidades",
+      hobbies: "Intereses",
+      onePageTitle: "Versión one-page",
+    },
+    about: {
+      title: "Acerca de",
+      text: "Soy un estudiante de ingeniería informática apasionado por el desarrollo de software, los sistemas embebidos y la inteligencia artificial. Actualmente en mi 5º año en Polytech Nancy, me especializo en Informática, Automática, Robótica y Redes (IA2R), con un enfoque en Sistemas de Información y Redes (SIR). Busco oportunidades para aplicar mis habilidades y aprender nuevas tecnologías."
     },
     skills: {
       title: "Habilidades",
@@ -328,7 +354,20 @@ const translations = {
       phoneFr: "Phone/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Phone/SMS: (+34) 633 681 593",
       email: "Email: gregoirebaumann94@gmail.com",
-      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/"
+      linkedin: "LinkedIn: linkedin.com/in/gregoire-baumann/",
+      onlineCV: "Online CV: gwagwa94.github.io/CV"
+    },
+    nav: {
+      about: "About",
+      experience: "Experience",
+      education: "Education",
+      skills: "Skills",
+      hobbies: "Hobbies",
+      onePageTitle: "One-page version:"
+    },
+    about: {
+      title: "About",
+      text: "I am a computer science engineering student passionate about software development, embedded systems, and artificial intelligence. Currently in my 5th year at Polytech Nancy, I specialize in Computer Science, Automation, Robotics & Networks (IA2R), with a focus on Information Systems and Networks (SIR). I am seeking opportunities to apply my skills and learn new technologies."
     },
     skills: {
       title: "Skills",
