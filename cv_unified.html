@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Default language, will be updated by JS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Grégoire Baumann</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f4f7f6; /* Light grey background */
+          color: #333;
+          line-height: 1.6;
+        }
+        .container {
+          max-width: 21cm; /* A4 width for screen display */
+          margin: 2cm auto; /* Centered with top/bottom margin */
+          background-color: #ffffff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border-radius: 12px; /* Rounded corners for the main container */
+          padding: 2.5cm; /* Padding inside the A4 area */
+          box-sizing: border-box; /* Include padding in width */
+          position: relative; /* For back button positioning */
+        }
+        h1, h2, h3 {
+          color: #2c3e50; /* Darker blue for headings */
+          font-weight: 600;
+        }
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          color: #1a202c; /* Even darker for name */
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-top: 1.5rem;
+          margin-bottom: 0.75rem;
+          border-bottom: 2px solid #e2e8f0; /* Light grey border */
+          padding-bottom: 0.5rem;
+        }
+        h3 {
+          font-size: 1.15rem;
+          font-weight: 600;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        .section-content {
+          margin-bottom: 1.5rem;
+        }
+        .experience-item, .education-item {
+          margin-bottom: 1rem;
+        }
+        .experience-item:last-child, .education-item:last-child {
+          margin-bottom: 0;
+        }
+        .skill-category {
+          font-weight: 600;
+          color: #4a5568;
+        }
+        .contact-info a {
+          color: #3182ce; /* Blue for links */
+          text-decoration: none;
+        }
+        .contact-info a:hover {
+          text-decoration: underline;
+        }
+
+        /* Back button style */
+        .back-button {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          background-color: #4a5568;
+          color: white;
+          padding: 8px 12px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-size: 0.9rem;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          transition: background-color 0.2s;
+        }
+        .back-button:hover {
+          background-color: #2d3748;
+        }
+
+        /* Language switch buttons */
+        .lang-switcher {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          display: flex;
+          gap: 10px;
+          z-index: 10;
+        }
+        .lang-switcher button {
+          background-color: #3182ce;
+          color: white;
+          padding: 6px 10px;
+          border-radius: 6px;
+          border: none;
+          cursor: pointer;
+          font-size: 0.85rem;
+          transition: background-color 0.2s;
+        }
+        .lang-switcher button:hover {
+          background-color: #2b6cb0;
+        }
+        .lang-switcher button.active {
+          background-color: #2c5282;
+          font-weight: bold;
+        }
+
+        /* Print-specific styles */
+        @media print {
+          /* @page rule for print settings */
+          @page {
+            size: A4; /* Explicitly set page size to A4 */
+            margin: 0.8cm; /* Slightly reduced overall page margins for print */
+          }
+
+          body {
+            background-color: #ffffff; /* White background for print */
+            margin: 0;
+            padding: 0;
+            font-size: 7.2pt; /* Further reduced base font size for print */
+            line-height: 1.05; /* Even tighter line height */
+          }
+          .container {
+            width: 100%; /* Take full available width of the A4 page */
+            max-width: 100%; /* Ensure it doesn't exceed 100% of the page width */
+            margin: 0; /* No external margins for the container, let @page handle it */
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0; /* No internal padding for the container, let @page handle margins */
+            box-sizing: border-box; /* Ensure padding is included in width */
+          }
+          /* Adjusted heading sizes for better balance */
+          h1 {
+            font-size: 1.4rem; /* Smaller h1 */
+            margin-bottom: 0.05rem; /* Very tight spacing */
+          }
+          h2 {
+            font-size: 0.9rem; /* Smaller h2 */
+            margin-top: 0.5rem; /* Tighter spacing */
+            margin-bottom: 0.2rem; /* Tighter spacing */
+            padding-bottom: 0.08rem; /* Tighter spacing */
+          }
+          h3 {
+            font-size: 0.75rem; /* Smaller h3 */
+            margin-top: 0.3rem; /* Tighter spacing */
+            margin-bottom: 0.08rem; /* Tighter spacing */
+          }
+          .section-content {
+            margin-bottom: 0.5rem; /* Reduced margin for sections */
+          }
+          .experience-item, .education-item {
+            margin-bottom: 0.3rem; /* Reduced margin for items */
+          }
+          .experience-item:last-child, .education-item:last-child {
+            margin-bottom: 0;
+          }
+          .skill-category {
+            font-weight: 600;
+            color: #4a5568;
+          }
+          /* Compact contact info */
+          .contact-info {
+            margin-bottom: 0.3rem !important; /* Tighter spacing */
+          }
+          .contact-info p {
+            font-size: 0.65rem; /* Even smaller contact info */
+            line-height: 1.1; /* Tighter line height for contact info */
+          }
+
+          /* Ensure grid columns are maintained in print */
+          .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr)); /* Force 3 columns */
+            gap: 0.2rem !important; /* Adjust gap for print */
+          }
+          .grid > div {
+            break-inside: avoid-column; /* Prevent column content from breaking */
+          }
+
+          /* Specific adjustments for list items (li) */
+          ul li {
+            font-size: 6.8pt !important; /* Explicitly set font size for list items */
+            line-height: 1.05 !important; /* Ensure tight line spacing for list items */
+            margin-left: 0.4rem !important; /* Reduce indentation for list items */
+          }
+
+          /* Ensure no page breaks inside sections */
+          .section-content, .experience-item, .education-item {
+            page-break-inside: avoid;
+          }
+          /* Reduce spacing for print to fit more content */
+          .mb-8 { margin-bottom: 0.4rem !important; }
+          .mb-6 { margin-bottom: 0.25rem !important; }
+          .mb-4 { margin-bottom: 0.1rem !important; }
+          .mt-8 { margin-top: 0.4rem !important; }
+          .mt-4 { margin-top: 0.1rem !important; }
+          .py-2 { padding-top: 0.03rem !important; padding-bottom: 0.03rem !important; }
+          .px-4 { padding-left: 0.1rem !important; padding-right: 0.1rem !important; }
+          /* The ml-4 on ul is now overridden by ul li margin-left */
+
+          /* Hide elements not needed for print */
+          .back-button, .lang-switcher, footer {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="container rounded-xl">
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+        <span id="backButtonText">Retour</span>
+    </a>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button id="lang-fr" onclick="setLanguage('fr')">FR</button>
+        <button id="lang-en" onclick="setLanguage('en')">EN</button>
+        <button id="lang-es" onclick="setLanguage('es')">ES</button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="text-center mb-8">
+        <h1 id="headerName"></h1>
+        <p class="text-lg text-gray-700" id="headerTitle"></p>
+        <p class="text-md text-gray-600" id="headerSchoolInfo"></p>
+        <p class="text-md text-gray-600" id="headerProgramInfo"></p>
+    </header>
+
+    <!-- Contact Information -->
+    <section class="mb-6 contact-info text-center text-sm text-gray-600">
+        <p id="contactLocation"></p>
+        <p id="contactPhoneFr"></p>
+        <p id="contactPhoneEs"></p>
+        <p id="contactEmail"></p>
+        <p id="contactLinkedin"></p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section-content">
+        <h2 id="skillsTitle"></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            <div>
+                <h3 class="skill-category" id="progLangTitle"></h3>
+                <ul class="list-disc list-inside" id="progLangList"></ul>
+            </div>
+            <div>
+                <h3 class="skill-category" id="embeddedSystemsTitle"></h3>
+                <ul class="list-disc list-inside" id="embeddedSystemsList"></ul>
+                <h3 class="skill-category mt-4" id="toolsTechTitle"></h3>
+                <ul class="list-disc list-inside" id="toolsTechList"></ul>
+            </div>
+            <div>
+                <h3 class="skill-category" id="conceptsMethodsTitle"></h3>
+                <ul class="list-disc list-inside" id="conceptsMethodsList"></ul>
+                <h3 class="skill-category mt-4" id="languagesTitle"></h3>
+                <ul class="list-disc list-inside" id="languagesList"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section-content">
+        <h2 id="experienceTitle"></h2>
+        <div id="experienceContent"></div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section-content">
+        <h2 id="educationTitle"></h2>
+        <div id="educationContent"></div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="section-content">
+        <h2 id="hobbiesTitle"></h2>
+        <ul class="list-disc list-inside" id="hobbiesList"></ul>
+    </section>
+</div>
+
+<script>
+    // Import translations from the external file
+    // Assuming translations.js is in the same directory or accessible path
+    // For local testing, you might need to run a simple local server
+    // For GitHub Pages, ensure translations.js is in the same directory as this HTML file.
+    // Making translations global in translations.js, so it's directly accessible.
+
+    // Function to render content based on language
+    function renderContent(lang) {
+      // Access the globally available translations object
+      const currentLang = window.translations[lang];
+      if (!currentLang) {
+        console.error("Language not found:", lang);
+        return;
+      }
+
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+
+      // Update Header
+      document.getElementById('backButtonText').textContent = currentLang.backButton;
+      document.getElementById('headerName').textContent = currentLang.header.name;
+      document.getElementById('headerTitle').textContent = currentLang.header.title;
+      document.getElementById('headerSchoolInfo').textContent = currentLang.header.schoolInfo;
+      document.getElementById('headerProgramInfo').textContent = currentLang.header.programInfo;
+
+      // Update Contact Info
+      document.getElementById('contactLocation').textContent = currentLang.contact.location;
+      document.getElementById('contactPhoneFr').textContent = currentLang.contact.phoneFr;
+      document.getElementById('contactPhoneEs').textContent = currentLang.contact.phoneEs;
+      document.getElementById('contactEmail').textContent = currentLang.contact.email;
+      document.getElementById('contactLinkedin').textContent = currentLang.contact.linkedin;
+
+      // Update Skills Section
+      document.getElementById('skillsTitle').textContent = currentLang.skills.title;
+
+      document.getElementById('progLangTitle').textContent = currentLang.skills.programmingLanguages.title;
+      renderList('progLangList', currentLang.skills.programmingLanguages.items);
+
+      document.getElementById('embeddedSystemsTitle').textContent = currentLang.skills.embeddedSystems.title;
+      renderList('embeddedSystemsList', currentLang.skills.embeddedSystems.items);
+
+      document.getElementById('toolsTechTitle').textContent = currentLang.skills.toolsTech.title;
+      renderList('toolsTechList', currentLang.skills.toolsTech.items);
+
+      document.getElementById('conceptsMethodsTitle').textContent = currentLang.skills.conceptsMethods.title;
+      renderList('conceptsMethodsList', currentLang.skills.conceptsMethods.items);
+
+      document.getElementById('languagesTitle').textContent = currentLang.skills.languages.title;
+      renderList('languagesList', currentLang.skills.languages.items);
+
+      // Update Experience Section
+      document.getElementById('experienceTitle').textContent = currentLang.experience.title;
+      const experienceContent = document.getElementById('experienceContent');
+      experienceContent.innerHTML = ''; // Clear previous content
+      currentLang.experience.items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'experience-item';
+        div.innerHTML = `
+          <h3 class="font-semibold">${item.company}</h3>
+          <p class="text-gray-600 italic">${item.role} — ${item.period}</p>
+          <ul class="list-disc list-inside ml-4">
+            ${item.description.map(desc => `<li>${desc}</li>`).join('')}
+          </ul>
+        `;
+        experienceContent.appendChild(div);
+      });
+
+      // Update Education Section
+      document.getElementById('educationTitle').textContent = currentLang.education.title;
+      const educationContent = document.getElementById('educationContent');
+      educationContent.innerHTML = ''; // Clear previous content
+      currentLang.education.items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'education-item';
+        div.innerHTML = `
+          <h3 class="font-semibold">${item.school}</h3>
+          <p class="text-gray-600 italic">${item.degree} — ${item.period}</p>
+          <ul class="list-disc list-inside ml-4">
+            ${item.details.map(detail => `<li>${detail}</li>`).join('')}
+          </ul>
+        `;
+        educationContent.appendChild(div);
+      });
+
+      // Update Hobbies Section
+      document.getElementById('hobbiesTitle').textContent = currentLang.hobbies.title;
+      renderList('hobbiesList', currentLang.hobbies.items);
+
+      // Set active button
+      document.querySelectorAll('.lang-switcher button').forEach(button => {
+        button.classList.remove('active');
+      });
+      document.getElementById(`lang-${lang}`).classList.add('active');
+    }
+
+    // Helper function to render a simple list
+    function renderList(ulId, items) {
+      const ul = document.getElementById(ulId);
+      ul.innerHTML = ''; // Clear previous content
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+    }
+
+    // Function to set language and update URL
+    function setLanguage(lang) {
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      window.history.pushState({}, '', url); // Update URL without reloading
+      renderContent(lang);
+    }
+
+    // On page load, load the translations script first, then render content
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamically load the translations.js script
+      const script = document.createElement('script');
+      script.src = 'translations.js'; // Assuming translations.js is in the same directory
+      script.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || 'fr'; // Default to French
+        renderContent(lang);
+      };
+      script.onerror = () => {
+        console.error("Failed to load translations.js. Ensure it's in the correct path.");
+        // Fallback to a default language or display an error message
+      };
+      document.head.appendChild(script);
+    });
+</script>
+</body>
+</html>
