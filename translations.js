@@ -8,7 +8,7 @@ const translations = {
       programInfo: "Programme SIR (Systèmes d'Information et Réseaux)"
     },
     contact: {
-      location: "Nancy (54) | Saint-Maur-des-Fossés (94) FRANCE",
+      location: "Saint-Maur-des-Fossés (94) FRANCE",
       phoneFr: "Phone/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Phone/SMS: (+34) 633 681 593",
       email: "Email: gregoirebaumann94@gmail.com",
@@ -166,7 +166,7 @@ const translations = {
         "J'aime beaucoup la musique. Je joue de la guitare depuis plus de 10 ans.",
         "J'ai pratiqué différents sports (escrime, karaté, voile, etc.).",
         "J'aime jouer aux échecs, aux jeux vidéo et discuter avec mes amis.",
-        "Cette année, j'ai commencé la salle de sport."
+        "Je vais à la salle de sport 5 à 7 jours par semaine."
       ]
     }
   },
@@ -179,7 +179,7 @@ const translations = {
       programInfo: "Programa SIR (Sistemas de Información y Redes)"
     },
     contact: {
-      location: "Nancy (54) | Saint-Maur-des-Fossés (94) FRANCIA",
+      location: "Saint-Maur-des-Fossés (94) FRANCIA",
       phoneFr: "Teléfono/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Teléfono/SMS: (+34) 633 681 593",
       email: "Correo electrónico: gregoirebaumann94@gmail.com",
@@ -337,7 +337,7 @@ const translations = {
         "Me gusta mucho la música. Toco la guitarra desde hace más de 10 años.",
         "He practicado diferentes deportes (esgrima, kárate, vela, etc.).",
         "Me gusta jugar al ajedrez, a los videojuegos y charlar con mis amigos.",
-        "Este año, empecé a ir al gimnasio."
+        "Voy al gimnasio 5 a 7 veces a la semana."
       ]
     }
   },
@@ -350,7 +350,7 @@ const translations = {
       programInfo: "SIR Program (Information Systems and Networks)"
     },
     contact: {
-      location: "Nancy (54) | Saint-Maur-des-Fossés (94) FRANCE",
+      location: "Saint-Maur-des-Fossés (94) FRANCE",
       phoneFr: "Phone/SMS/WhatsApp: (+33) 06 14 47 66 27",
       phoneEs: "Phone/SMS: (+34) 633 681 593",
       email: "Email: gregoirebaumann94@gmail.com",
@@ -508,7 +508,7 @@ const translations = {
         "I love music. I have been playing the guitar for over 10 years.",
         "I have practiced various sports (fencing, karate, sailing, etc.).",
         "I enjoy playing chess, video games, and chatting with my friends.",
-        "This year, I started going to the gym."
+        "I go to the gym 5 to 7 times a week."
       ]
     }
   }
